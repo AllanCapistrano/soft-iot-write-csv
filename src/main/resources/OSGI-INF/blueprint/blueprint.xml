@@ -23,7 +23,7 @@
         <cm:default-properties>
             <cm:property name="filePath" value="/opt/karaf/etc/csv/" />
             <cm:property name="fileName" value="node_credibility.csv" />
-            <cm:property name="header" value="C(n),R,Tr(n),Cr_old(n),Cr_new(n)" />
+            <cm:property name="header" value="Node_ID,C(n),R,Tr(n),Cr_old(n),Cr_new(n)" />
         </cm:default-properties>
     </cm:property-placeholder>
 
