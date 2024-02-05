@@ -1,7 +1,6 @@
 package write.csv.models;
 
 import com.opencsv.CSVWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -11,11 +10,10 @@ import write.csv.services.CsvWriterService;
  * Responsável por criar e escrever em um arquivo .csv.
  *
  * @author Allan Capistrano
- * @version 1.0.0
+ * @version 1.0.1
  */
 public class CsvWriter implements CsvWriterService {
 
-  private String fileName;
   private String filePath;
   private String header;
   private CSVWriter writer;
@@ -27,15 +25,12 @@ public class CsvWriter implements CsvWriterService {
    * Executa o que foi definido na função quando o bundle for inicializado.
    */
   public void start() {
-    File file = new File(this.filePath + this.fileName);
+    String[] ola = { "qwerty", "1", "1", "1", "1", "1" };
+    String[] mundo = { "qwerty", "1", "0", "1", "1", "0" };
 
-    try {
-      FileWriter outputFile = new FileWriter(file);
-      this.writer = new CSVWriter(outputFile);
-      writer.writeNext(this.header.split(","));
-    } catch (IOException ioe) {
-      logger.severe(ioe.getMessage());
-    }
+    this.createFile("ola");
+    this.writeData(ola);
+    this.writeData(mundo);
   }
 
   /**
@@ -43,6 +38,25 @@ public class CsvWriter implements CsvWriterService {
    */
   public void stop() {
     this.closeFile();
+  }
+
+  /**
+   * Cria o arquivo .csv.
+   *
+   * @param fileName String - Nome do arquivo. Obs: Não é necessário passar o
+   * .csv
+   */
+  public void createFile(String fileName) {
+    try {
+      String fileCompletePath = this.filePath + fileName + ".csv";
+      FileWriter fileWriter = new FileWriter(fileCompletePath, true);
+
+      this.writer = new CSVWriter(fileWriter);
+      this.writer.writeNext(this.header.split(","));
+      this.writer.flush();
+    } catch (IOException ioe) {
+      logger.severe(ioe.getMessage());
+    }
   }
 
   /**
@@ -62,20 +76,12 @@ public class CsvWriter implements CsvWriterService {
   /**
    * Fecha o arquivo .csv.
    */
-  public void closeFile() {
+  private void closeFile() {
     try {
       this.writer.close();
     } catch (IOException ioe) {
       logger.severe(ioe.getMessage());
     }
-  }
-
-  public String getFileName() {
-    return fileName;
-  }
-
-  public void setFileName(String fileName) {
-    this.fileName = fileName;
   }
 
   public String getFilePath() {
