@@ -13,7 +13,6 @@
     <bean id="csvWriter" class="write.csv.models.CsvWriter" 
         init-method="start" destroy-method="stop">
         <property name="filePath" value="${filePath}" />
-        <property name="fileName" value="${fileName}" />
         <property name="header" value="${header}" />
     </bean>
 
@@ -22,7 +21,6 @@
         update-strategy="reload">
         <cm:default-properties>
             <cm:property name="filePath" value="/opt/karaf/etc/csv/" />
-            <cm:property name="fileName" value="node_credibility.csv" />
             <cm:property name="header" value="Node_ID,C(n),R,Tr(n),Cr_old(n),Cr_new(n)" />
         </cm:default-properties>
     </cm:property-placeholder>
