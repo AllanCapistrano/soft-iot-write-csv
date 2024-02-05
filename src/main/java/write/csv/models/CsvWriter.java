@@ -22,25 +22,6 @@ public class CsvWriter implements CsvWriterService {
   );
 
   /**
-   * Executa o que foi definido na função quando o bundle for inicializado.
-   */
-  public void start() {
-    String[] ola = { "qwerty", "1", "1", "1", "1", "1" };
-    String[] mundo = { "qwerty", "1", "0", "1", "1", "0" };
-
-    this.createFile("ola");
-    this.writeData(ola);
-    this.writeData(mundo);
-  }
-
-  /**
-   * Executa o que foi definido na função quando o bundle for finalizado.
-   */
-  public void stop() {
-    this.closeFile();
-  }
-
-  /**
    * Cria o arquivo .csv.
    *
    * @param fileName String - Nome do arquivo. Obs: Não é necessário passar o
@@ -76,7 +57,7 @@ public class CsvWriter implements CsvWriterService {
   /**
    * Fecha o arquivo .csv.
    */
-  private void closeFile() {
+  public void closeFile() {
     try {
       this.writer.close();
     } catch (IOException ioe) {

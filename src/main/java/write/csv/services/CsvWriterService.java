@@ -20,4 +20,9 @@ public interface CsvWriterService {
    * @param data String[] - Dados que serão gravados no arquivo.
    */
   public void writeData(String[] data);
+
+  /**
+   * Fecha o arquivo .csv.
+   */
+  public void closeFile();
 }
