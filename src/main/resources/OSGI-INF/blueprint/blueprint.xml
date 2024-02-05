@@ -10,8 +10,7 @@
         ref="csvWriter"
         interface="write.csv.services.CsvWriterService" />
 
-    <bean id="csvWriter" class="write.csv.models.CsvWriter" 
-        init-method="start" destroy-method="stop">
+    <bean id="csvWriter" class="write.csv.models.CsvWriter">
         <property name="filePath" value="${filePath}" />
         <property name="header" value="${header}" />
     </bean>
