@@ -15,7 +15,6 @@ import write.csv.services.CsvWriterService;
 public class CsvWriter implements CsvWriterService {
 
   private String filePath;
-  private String header;
   private CSVWriter writer;
   private static final Logger logger = Logger.getLogger(
     CsvWriter.class.getName()
@@ -33,8 +32,6 @@ public class CsvWriter implements CsvWriterService {
       FileWriter fileWriter = new FileWriter(fileCompletePath, true);
 
       this.writer = new CSVWriter(fileWriter);
-      this.writer.writeNext(this.header.split(","));
-      this.writer.flush();
     } catch (IOException ioe) {
       logger.severe(ioe.getMessage());
     }
@@ -71,13 +68,5 @@ public class CsvWriter implements CsvWriterService {
 
   public void setFilePath(String filePath) {
     this.filePath = filePath;
-  }
-
-  public String getHeader() {
-    return header;
-  }
-
-  public void setHeader(String header) {
-    this.header = header;
   }
 }
